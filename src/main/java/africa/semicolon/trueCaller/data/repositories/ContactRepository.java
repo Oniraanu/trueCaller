@@ -7,4 +7,6 @@ public interface ContactRepository {
     int count();
     Contact findByFirstName(String firstName);
     Contact findById(int id);
+    void deleteById(int id);
+    void deleteByFirstname(String firstName);
 }

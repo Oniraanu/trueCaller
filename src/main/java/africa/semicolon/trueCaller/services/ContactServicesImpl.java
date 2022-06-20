@@ -22,4 +22,19 @@ public class ContactServicesImpl implements ContactServices{
     public Contact findById(int i) {
         return contactRepository.findById(i);
     }
+
+    @Override
+    public Contact findByFirstName(String firstName) {
+        return contactRepository.findByFirstName(firstName);
+    }
+
+    @Override
+    public void deleteById(int id) {
+        contactRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteByFirstName(String firstName) {
+        contactRepository.deleteByFirstname(firstName);
+    }
 }

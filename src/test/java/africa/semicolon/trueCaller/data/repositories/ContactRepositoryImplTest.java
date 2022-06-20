@@ -70,4 +70,49 @@ class ContactRepositoryImplTest {
 
         assertEquals("Mayowa", saveContact2.getFirstName());
     }
+
+    @Test
+    public void canDeleteById(){
+        Contact contact = new Contact();
+        contact.setFirstName("Olubunmi");
+        Contact contact2 = new Contact();
+        contact2.setFirstName("Mayowa");
+
+        Contact saveContact = contactRepository.save(contact);
+        Contact saveContact2 = contactRepository.save(contact2);
+
+        Contact findFirstContact = contactRepository.findById(1);
+        Contact findSecondContact = contactRepository.findById(2);
+
+        assertEquals(1, findFirstContact.getId());
+        assertEquals(2, findSecondContact.getId());
+
+        contactRepository.deleteById(2);
+
+        assertEquals(1, contactRepository.count());
+        //assertEquals("Olubunmi", contactRepository.findById(1));
+    }
+
+    @Test
+    public void canDeleteByFirstName(){
+        Contact contact = new Contact();
+        contact.setFirstName("Olubunmi");
+        Contact contact2 = new Contact();
+        contact2.setFirstName("Mayowa");
+
+        Contact saveContact = contactRepository.save(contact);
+        Contact saveContact2 = contactRepository.save(contact2);
+
+        Contact findFirstContact = contactRepository.findById(1);
+        Contact findSecondContact = contactRepository.findById(2);
+
+        assertEquals(1, findFirstContact.getId());
+        assertEquals(2, findSecondContact.getId());
+
+        contactRepository.deleteByFirstname("Olubunmi");
+
+        assertEquals(1, contactRepository.count());
+        // assertEquals("Mayowa", contactRepository.findById(1));
+    }
+
 }
