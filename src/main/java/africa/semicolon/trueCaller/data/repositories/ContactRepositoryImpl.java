@@ -2,13 +2,12 @@ package africa.semicolon.trueCaller.data.repositories;
 
 import africa.semicolon.trueCaller.data.models.Contact;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 public class ContactRepositoryImpl implements ContactRepository{
 
-    ArrayList<Contact> contacts = new ArrayList<>();
+    ArrayList <Contact> contacts = new ArrayList<>();
 
     @Override
     public Contact save(Contact contact) {
@@ -23,26 +22,50 @@ public class ContactRepositoryImpl implements ContactRepository{
     }
 
     @Override
-    public Contact findByFirstName(String firstName) {
-        for(Contact contact : contacts){
-            if (firstName.equalsIgnoreCase(contact.getFirstName()))
+    public Contact findById(int id) {
+        for (Contact contact : contacts){
+            if (contact.getId() == id)
                 return contact;
         }
-        throw new RuntimeException("First Name not found");
+        return null;
     }
 
     @Override
-    public Contact findById(int id) {
-        return contacts.get(id - 1);
+    public  List <Contact> findContact(String searchValue) {
+        List listOfContacts = new ArrayList<>();
+        for (Contact contact : contacts){
+            if (contact.getFirstName().equalsIgnoreCase(searchValue) ||
+            contact.getLastName().equalsIgnoreCase(searchValue) ||
+            contact.getPhoneNumber().equalsIgnoreCase(searchValue))
+                listOfContacts.add(contact);
+        }
+        return listOfContacts;
     }
 
     @Override
-    public void deleteById(int id) {
-        contacts.removeIf(contact -> id == contact.getId());
+    public Contact deleteById(int id) {
+        for (Contact contact : contacts){
+            if (contact.getId() == id)
+                contacts.remove(contact);
+        }
+        return null;
     }
 
     @Override
-    public void deleteByFirstname(String firstname) {
-        contacts.removeIf(contact -> firstname.equals(contact.getFirstName()));
+    public Contact deleteContact(Contact contact) {
+        for (Contact myContact : contacts){
+            if (myContact.equals(contact))
+                contacts.remove(contact);
+            return myContact;
+        }
+        return null;
+    }
+
+    private Contact updateContact(int id, Contact newContact){
+        for (Contact contact : contacts){
+            if (contact.getId() == id)
+                contacts.set(id, newContact);
+        }
+        return newContact;
     }
 }

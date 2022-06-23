@@ -72,7 +72,7 @@ class ContactRepositoryImplTest {
     }
 
     @Test
-    public void canDeleteById(){
+    public void canDeleteContact(){
         Contact contact = new Contact();
         contact.setFirstName("Olubunmi");
         Contact contact2 = new Contact();
@@ -81,16 +81,10 @@ class ContactRepositoryImplTest {
         Contact saveContact = contactRepository.save(contact);
         Contact saveContact2 = contactRepository.save(contact2);
 
-        Contact findFirstContact = contactRepository.findById(1);
-        Contact findSecondContact = contactRepository.findById(2);
-
-        assertEquals(1, findFirstContact.getId());
-        assertEquals(2, findSecondContact.getId());
-
-        contactRepository.deleteById(2);
+        Contact contactDelete = contactRepository.deleteContact(contact);
 
         assertEquals(1, contactRepository.count());
-        //assertEquals("Olubunmi", contactRepository.findById(1));
+        // assertEquals("Olubunmi", contactRepository.findById(1));
     }
 
     @Test
@@ -109,7 +103,7 @@ class ContactRepositoryImplTest {
         assertEquals(1, findFirstContact.getId());
         assertEquals(2, findSecondContact.getId());
 
-        contactRepository.deleteByFirstname("Olubunmi");
+        Contact contactDelete = contactRepository.deleteContact(contact);
 
         assertEquals(1, contactRepository.count());
         // assertEquals("Mayowa", contactRepository.findById(1));

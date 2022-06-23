@@ -2,11 +2,13 @@ package africa.semicolon.trueCaller.data.repositories;
 
 import africa.semicolon.trueCaller.data.models.Contact;
 
+import java.util.List;
+
 public interface ContactRepository {
     Contact save(Contact contact);
     int count();
-    Contact findByFirstName(String firstName);
     Contact findById(int id);
-    void deleteById(int id);
-    void deleteByFirstname(String firstName);
+    List <Contact> findContact(String searchValue);
+    Contact deleteById(int id);
+    Contact deleteContact(Contact contact);
 }

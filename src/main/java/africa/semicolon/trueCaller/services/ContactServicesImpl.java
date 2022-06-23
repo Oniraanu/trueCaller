@@ -4,13 +4,12 @@ import africa.semicolon.trueCaller.data.models.Contact;
 import africa.semicolon.trueCaller.data.repositories.ContactRepository;
 import africa.semicolon.trueCaller.data.repositories.ContactRepositoryImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContactServicesImpl implements ContactServices{
 
-    private ContactRepository contactRepository;
-
-    public ContactServicesImpl(ContactRepository contactRepository) {
-        this.contactRepository = contactRepository;
-    }
+    private ContactRepository contactRepository = new ContactRepositoryImpl();
 
     @Override
     public void addContact(String firstName, String lastName, String phoneNumber) {
@@ -19,22 +18,17 @@ public class ContactServicesImpl implements ContactServices{
     }
 
     @Override
-    public Contact findById(int i) {
-        return contactRepository.findById(i);
+    public List<Contact> findContact(String searchValue) {
+        return contactRepository.findContact(searchValue);
     }
 
     @Override
-    public Contact findByFirstName(String firstName) {
-        return contactRepository.findByFirstName(firstName);
+    public Contact findId(int id) {
+        return contactRepository.findById(id);
     }
 
     @Override
-    public void deleteById(int id) {
-        contactRepository.deleteById(id);
-    }
-
-    @Override
-    public void deleteByFirstName(String firstName) {
-        contactRepository.deleteByFirstname(firstName);
+    public Contact deleteContact(Contact contact) {
+        return contactRepository.deleteContact(contact);
     }
 }

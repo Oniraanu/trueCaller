@@ -16,14 +16,14 @@ class ContactServicesImplTest {
     @BeforeEach
     public void setUp(){
         contactRepository = new ContactRepositoryImpl();
-        contactServices = new ContactServicesImpl(contactRepository);
+        contactServices = new ContactServicesImpl();
     }
 
     @Test
     public void saveContract_findAndReturnContact(){
         contactServices.addContact("Bakre", "Olubunmi", "08109739734");
 
-        Contact contact = contactServices.findById(1);
+        Contact contact = (Contact) contactServices.findContact("Bakre");
         assertEquals("Bakre", contact.getFirstName());
         assertEquals("Olubunmi", contact.getLastName());
         assertEquals("08109739734", contact.getPhoneNumber());

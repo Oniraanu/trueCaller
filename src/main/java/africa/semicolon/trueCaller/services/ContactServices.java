@@ -2,11 +2,12 @@ package africa.semicolon.trueCaller.services;
 
 import africa.semicolon.trueCaller.data.models.Contact;
 
+import java.util.List;
+
 public interface ContactServices {
 
-    public void addContact(String firstName, String lastName, String phoneNumber);
-    Contact findById(int i);
-    Contact findByFirstName(String firstName);
-    void deleteById(int id);
-    void deleteByFirstName(String firstName);
+    void addContact(String firstName, String lastName, String phoneNumber);
+    List <Contact> findContact(String searchValue);
+    Contact findId(int id);
+    Contact deleteContact(Contact contact);
 }
